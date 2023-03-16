@@ -9,5 +9,8 @@
         <module name="Trial3" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="F1-homework" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

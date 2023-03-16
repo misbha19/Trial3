@@ -4,16 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.talentTEK</groupId>
+  <groupId>talenttectc</groupId>
   <artifactId>Trial3</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>Trial3</name>
 
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -23,7 +24,6 @@
       <artifactId>selenium-java</artifactId>
       <version>4.1.1</version>
     </dependency>
-
 
     <dependency>
       <groupId>io.cucumber</groupId>
@@ -42,14 +42,30 @@
       <artifactId>webdrivermanager</artifactId>
       <version>5.0.3</version>
     </dependency>
-
     <dependency>
       <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
       <version>1.0.2</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+    <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>maven-cucumber-reporting</artifactId>
+      <version>5.7.4</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.25</version>
+      <scope>test</scope>
+    </dependency>
 
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -57,7 +73,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.8.0</version>
         <configuration>
           <source>8</source>
           <target>8</target>
@@ -72,11 +88,16 @@
           <parallel>methods</parallel>
           <useUnlimitedThreads>true</useUnlimitedThreads>
         </configuration>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>net.masterthought</groupId>
         <artifactId>maven-cucumber-reporting</artifactId>
-        <version>2.8.0</version>
+        <version>5.7.4</version>
         <executions>
           <execution>
             <id>execution</id>
@@ -86,11 +107,16 @@
             </goals>
             <configuration>
               <projectName>Trial3</projectName>
+              <inputDirectory>${project.build.directory}/</inputDirectory>
               <outputDirectory>${project.build.directory}/cucumber-report-html</outputDirectory>
+              <jsonFiles>
+                <jsonFile>**/*.json</jsonFile>
+              </jsonFiles>
             </configuration>
           </execution>
         </executions>
       </plugin>
     </plugins>
   </build>
+
 </project>
